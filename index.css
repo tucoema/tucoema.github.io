@@ -1,0 +1,136 @@
+:root {
+    --bg: #0a0a0a;
+    --red: #cc1111;
+    --red-bright: #ff3333;
+    --text: #e8e0d0;
+    --text-dim: #777;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--bg);
+    background-image:
+        radial-gradient(ellipse at 15% 60%, rgba(139,0,0,0.12) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 20%, rgba(139,0,0,0.07) 0%, transparent 50%);
+    color: var(--text);
+    min-height: 100vh;
+    font-family: 'Barlow Condensed', sans-serif;
+    overflow-x: hidden;
+}
+
+/* ── Header ── */
+header {
+    text-align: center;
+    padding: 64px 20px 24px;
+}
+
+h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    color: #fff;
+    letter-spacing: 8px;
+    line-height: 1;
+    text-shadow: 0 0 50px rgba(204,17,17,0.45), 0 4px 24px rgba(0,0,0,0.9);
+}
+
+.subtitle {
+    color: var(--red);
+    font-size: 1rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-top: 12px;
+    font-weight: 300;
+}
+
+/* ── Artist Grid ── */
+main.artistas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 36px;
+    max-width: 1250px;
+    margin: 50px auto 120px;
+    padding: 0 24px;
+}
+
+/* staggered fade-up */
+.artista-card { animation: fadeUp 0.6s ease both; }
+.artista-card:nth-child(1) { animation-delay: 0.05s; }
+.artista-card:nth-child(2) { animation-delay: 0.15s; }
+.artista-card:nth-child(3) { animation-delay: 0.25s; }
+.artista-card:nth-child(4) { animation-delay: 0.35s; }
+.artista-card:nth-child(5) { animation-delay: 0.45s; }
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.artista-card {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.artista-card img {
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    filter: grayscale(30%);
+    transition: transform 0.35s ease, box-shadow 0.35s ease,
+                border-color 0.35s ease, filter 0.35s ease;
+    display: block;
+}
+
+.artista-card:hover img {
+    transform: translateY(-10px) scale(1.04);
+    box-shadow: 0 20px 50px rgba(204,17,17,0.45), 0 8px 20px rgba(0,0,0,0.8);
+    border-color: var(--red);
+    filter: grayscale(0%);
+}
+
+.artista-nome {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.artista-card:hover .artista-nome {
+    color: var(--red-bright);
+}
+
+/* ── Nav Button ── */
+.botao-nav {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    padding: 13px 26px;
+    background: var(--red);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 3px;
+    border-radius: 4px;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    box-shadow: 0 4px 22px rgba(204,17,17,0.45);
+    z-index: 100;
+}
+
+.botao-nav:hover {
+    background: var(--red-bright);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 32px rgba(204,17,17,0.65);
+}
+
+.botao-nav:active {
+    transform: translateY(0);
+}

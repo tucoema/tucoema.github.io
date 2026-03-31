@@ -1,0 +1,183 @@
+:root {
+    --bg: #0a0a0a;
+    --red: #cc1111;
+    --red-bright: #ff3333;
+    --text: #e8e0d0;
+    --text-dim: #888;
+    --border: rgba(255,255,255,0.07);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--bg);
+    background-image:
+        radial-gradient(ellipse at 70% 30%, rgba(139,0,0,0.1) 0%, transparent 55%);
+    color: var(--text);
+    min-height: 100vh;
+    font-family: 'Barlow Condensed', sans-serif;
+    overflow-x: hidden;
+}
+
+/* ── Header ── */
+header {
+    text-align: center;
+    padding: 56px 20px 20px;
+    animation: fadeDown 0.5s ease both;
+}
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    color: #fff;
+    letter-spacing: 6px;
+    line-height: 1;
+    text-shadow: 0 0 40px rgba(204,17,17,0.5), 0 4px 20px rgba(0,0,0,0.9);
+}
+
+.subtitle {
+    color: var(--red);
+    font-size: 0.95rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    font-weight: 300;
+}
+
+/* ── Main Layout ── */
+main.catalogo {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 50px auto 100px;
+    padding: 0 40px;
+    align-items: start;
+    animation: fadeUp 0.6s ease 0.1s both;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Song List ── */
+.song-list {
+    list-style: none;
+}
+
+.song-list li {
+    border-bottom: 1px solid var(--border);
+}
+
+.song-list li:first-child {
+    border-top: 1px solid var(--border);
+}
+
+.song-list a {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 12px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    font-weight: 400;
+    transition: background 0.2s, color 0.2s, padding-left 0.2s;
+}
+
+.song-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    color: var(--red);
+    width: 28px;
+    flex-shrink: 0;
+    letter-spacing: 1px;
+}
+
+.song-list a:hover {
+    background: rgba(204,17,17,0.08);
+    color: #fff;
+    padding-left: 24px;
+}
+
+.play-icon {
+    margin-left: auto;
+    font-size: 0.9rem;
+    opacity: 0;
+    color: var(--red);
+    transition: opacity 0.2s;
+    flex-shrink: 0;
+}
+
+.song-list a:hover .play-icon {
+    opacity: 1;
+}
+
+/* ── Album Cover ── */
+.album-cover {
+    position: sticky;
+    top: 40px;
+}
+
+.album-cover img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid rgba(204,17,17,0.2);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 40px rgba(204,17,17,0.1);
+    display: block;
+    transition: box-shadow 0.4s ease;
+}
+
+.album-cover img:hover {
+    box-shadow: 0 24px 70px rgba(0,0,0,0.8), 0 0 60px rgba(204,17,17,0.25);
+}
+
+/* ── Back Button ── */
+.botao-nav {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    padding: 13px 26px;
+    background: var(--red);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 3px;
+    border-radius: 4px;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    box-shadow: 0 4px 22px rgba(204,17,17,0.45);
+    z-index: 100;
+}
+
+.botao-nav:hover {
+    background: var(--red-bright);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 32px rgba(204,17,17,0.65);
+}
+
+.botao-nav:active { transform: translateY(0); }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    main.catalogo {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+
+    .album-cover {
+        position: static;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    h1 { font-size: clamp(2.2rem, 8vw, 4rem); }
+}
